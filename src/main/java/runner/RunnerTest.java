@@ -14,10 +14,10 @@ import java.util.logging.Logger;
         "pretty:target/JsonReport.json",
         "json:target/json/cucumber.json"},
         tags = {"@Test"},
-        features = {"src/test/resources/features"},
+        features = {"src/test/resources/features/"},
         glue = {"Steps.ApiSteps"},
-        strict = true,
-        dryRun = false
+        strict = true
+//        dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(RunnerTest.class));
