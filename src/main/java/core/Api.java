@@ -8,11 +8,11 @@ import io.restassured.specification.RequestSpecification;
 
 public class Api {
 
-    public static Response makecall(String method, String url){
-        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
-        requestSpecBuilder.setBaseUri(url.toString());
-        RequestSpecification requestSpecification = RestAssured.given(requestSpecBuilder.build()).relaxedHTTPSValidation();
-        Response response = requestSpecification.request(Method.valueOf(method.toString().trim().toUpperCase()));
-        return response;
-    }
+//    public static Response makecall(String method, String url){
+//        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+//        requestSpecBuilder.setBaseUri(url.toString());
+//        RequestSpecification requestSpecification = RestAssured.given(requestSpecBuilder.build()).relaxedHTTPSValidation();
+//        Response response = requestSpecification.request(Method.valueOf(method.toString().trim().toUpperCase()));
+//        return response;
+//    }
 }
