@@ -22,7 +22,7 @@ public class MyStepdefs {
         testContext.scenarioContext.setContext(Context.API_RESPONSE, pdfFile);
     }
 
-    @Then("Verify text from PDF endpoint {string} contains text {string}")
+    @Then("Verify text from PDF contains text {string}")
     public void verifyTextFromPdfEndpointContainsText(String endPoint, String text) throws IOException {
         Download download = new Download();
         String content = download.extractContent((byte[]) testContext.scenarioContext.getContext(Context.API_RESPONSE));
