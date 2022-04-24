@@ -1,11 +1,11 @@
 package Utils;
 
-import core.ScenarioContext;
-import io.cucumber.java.eo.Do;
+import enums.Context;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBodyExtractionOptions;
 import io.restassured.specification.RequestSpecification;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -28,10 +28,23 @@ public class Download {
         return response.asByteArray();
     }
 
+    public Response apiExecute(String url, String method, String body) {
+
+        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+        requestSpecBuilder.setBaseUri(url);
+        RequestSpecification requestSpecification = RestAssured.given(requestSpecBuilder.build()).relaxedHTTPSValidation();
+        requestSpecification.header("Accept-Encoding", "gzip, deflate, br");
+        requestSpecification.header("Accept", "*/*");
+        if (body != null) {
+            requestSpecification.body(body);
+        }
+        Response response = requestSpecification.request(Method.valueOf(method.trim().toUpperCase()));
+        return response;
+    }
+
     public void downloadLocally(byte[] pdfFile) {
         FileOutputStream fos;
         try {
-//            System.out.println(System.getProperty("user.home") + "/" + "file001" + ".pdf");
             fos = new FileOutputStream(System.getProperty("user.home") + "/" + "file001" + ".pdf");
             fos.write(pdfFile);
             fos.close();
